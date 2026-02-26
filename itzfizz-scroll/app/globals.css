@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0e0e10;
+  --track-bg: #d1d1d1;
+  --road-bg: #1e1e1e;
+  --trail: #45db7d;
+  --yellow: #def54f;
+  --blue: #6ac9ff;
+  --orange: #fa7328;
+  --text-dim: #888;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+/* Road lane dashes */
+.road::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    to right,
+    #3a3a40 0px,
+    #3a3a40 60px,
+    transparent 60px,
+    transparent 110px
+  );
+  opacity: 0.45;
+}
+
+/* Trail glow edge */
+.trail::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(69, 219, 125, 0.95));
+  filter: blur(6px);
+}
+
+/* Scroll hint mouse dot bounce */
+@keyframes scrollDot {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50%       { opacity: 0.3; transform: translateY(6px); }
+}
+.mouse-dot {
+  animation: scrollDot 1.6s ease-in-out infinite;
+}
